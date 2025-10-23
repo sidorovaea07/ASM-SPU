@@ -1,4 +1,4 @@
-#include "../../headers/HeaderForStacks.h"
+#include "/mnt/c/Users/Honor/OneDrive/Рабочий стол/C/ASM-SPU/headers/HeaderForStacks.h"
 
 int ASMInit(assembler_t* ass)
 {

@@ -8,6 +8,6 @@ int main()
     for (size_t i = 0; i <= ass1.ip; i++) {SPU_PRINT("%d\n", ass1.code[i]);}
     CodeToFile(&ass1, "txt/bytecode.txt");
     ASMDestroy(&ass1);
-    printf("finish\n");
+    printf(PURPLE"finish\n"WHITE);
     return 0;
 }

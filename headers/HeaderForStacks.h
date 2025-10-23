@@ -6,8 +6,8 @@
 #include <assert.h>
 #include <string.h>
 #include <math.h>
-#include "../../../2Dmas/evgene/include/FileWork.h"
-#include "../../../2Dmas/evgene/include/PtrsWork.h"
+#include "/mnt/c/Users/Honor/OneDrive/Рабочий стол/C/ASM-SPU/headers/FileWork.h"
+#include "/mnt/c/Users/Honor/OneDrive/Рабочий стол/C/ASM-SPU/headers/PtrsWork.h"
    
 #define PRPRINT(x) printf("ProcessorVerify returned " #x"\n"); break;
 #define STPRINT(x) printf("StackVerify returned " #x"\n");
@@ -17,7 +17,7 @@
 #undef PRU
 #undef PRTF
 
-//#define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
     #define SPU_PRINT(fmt, ...) printf(YELLOW fmt WHITE, ##__VA_ARGS__ )

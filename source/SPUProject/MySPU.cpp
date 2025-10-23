@@ -1,4 +1,4 @@
-#include "../../headers/HeaderForStacks.h"
+#include "/mnt/c/Users/Honor/OneDrive/Рабочий стол/C/ASM-SPU/headers/HeaderForStacks.h"
 
 int ProcessorInit(processor_t* prc, size_t capacity)
 {
@@ -65,7 +65,7 @@ int SPU(processor_t* prc, const char* file)
             {
                 SPU_PRINT("doing sqrt...\n");
                 int x1 = StackPop(&prc -> stk);
-                if (x1 < 0) {printf(RED "WE CAN'T SQRT IF < 0\n" WHITE);}
+                if (x1 < 0) {printf(RED "WE CAN'T SQRT IF < 0, D = %d\n" WHITE, x1); return OK;}
                 else {StackPush(&prc -> stk, (int)sqrt(x1));}
                 passerted(prc); 
                 prc -> ip++;
@@ -94,6 +94,7 @@ int SPU(processor_t* prc, const char* file)
                 prc -> regs[prc -> code[prc -> ip + 1] - 'A' + 1] = x1;
                 SPU_PRINT("prc -> regs[prc -> code[prc -> ip + 1] - 'A' + 1] = %d\n", prc -> regs[prc -> code[prc -> ip + 1] - 'A' + 1]);
                 prc -> ip += 2;
+                passerted(prc); 
                 break;
             }
             case PUSHR:
@@ -102,6 +103,7 @@ int SPU(processor_t* prc, const char* file)
                 int x1 = prc -> regs[prc -> code[prc -> ip + 1] - 'A' + 1];
                 StackPush(&prc -> stk, x1);
                 prc -> ip += 2;
+                passerted(prc); 
                 break;
             }
             case JB: //firstly push x //x1 = x; x2 - stack value //if x2 < x1
@@ -110,10 +112,10 @@ int SPU(processor_t* prc, const char* file)
                 int x1 = StackPop(&prc -> stk);
                 int x2 = StackPop(&prc -> stk);
                 if (x2 < x1) {
-                    prc -> ip = size_t(prc -> code[prc -> ip + 1]);
+                    prc -> ip = (size_t)(prc -> code[prc -> ip + 1]);
                 }
-                StackPush(&prc-> stk, x2);
-                StackPush(&prc-> stk, x1);
+                else prc -> ip += 2;
+                passerted(prc); 
                 break;
             }
             case CALL:
@@ -121,12 +123,14 @@ int SPU(processor_t* prc, const char* file)
                 SPU_PRINT("doing call...\n");
                 StackPush(&prc -> addrs, (int)prc -> ip + 2);
                 prc -> ip = (size_t)prc -> code[prc -> ip + 1];
+                passerted(prc); 
                 break;
             }
             case RET:
             {
                 SPU_PRINT("doing ret...\n");
                 prc -> ip = (size_t)StackPop(&prc -> addrs);
+                passerted(prc); 
                 break;
             }
             default:
