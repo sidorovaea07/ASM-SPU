@@ -1,0 +1,21 @@
+
+main() {
+    scanf(a)
+    scanf(b)
+    scanf(c)
+
+    if (a == 0) { jb 
+        LinearSolve()
+        jmp
+    }
+->    else {
+        ...
+        // disckr
+    }
+->
+    return 0; // HLT
+}
+
+int LinearSolve() {
+
+}
