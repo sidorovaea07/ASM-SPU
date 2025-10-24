@@ -17,7 +17,7 @@
 #undef PRU
 #undef PRTF
 
-#define DEBUG
+// #define DEBUG
 
 #ifdef DEBUG
     #define SPU_PRINT(fmt, ...) printf(YELLOW fmt WHITE, ##__VA_ARGS__ )

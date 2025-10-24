@@ -106,7 +106,7 @@ int SPU(processor_t* prc, const char* file)
                 passerted(prc); 
                 break;
             }
-            case JB: //firstly push x //x1 = x; x2 - stack value //if x2 < x1
+            case JB:
             {
                 SPU_PRINT("doing jb...\n");
                 int x1 = StackPop(&prc -> stk);
@@ -115,6 +115,13 @@ int SPU(processor_t* prc, const char* file)
                     prc -> ip = (size_t)(prc -> code[prc -> ip + 1]);
                 }
                 else prc -> ip += 2;
+                passerted(prc); 
+                break;
+            }
+            case JMP:
+            {
+                SPU_PRINT("doing jmp...\n");
+                prc -> ip = (size_t)(prc -> code[prc -> ip + 1]);
                 passerted(prc); 
                 break;
             }

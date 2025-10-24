@@ -162,8 +162,10 @@ int LoadCode(const char* file, assembler_t *ass)
                     break;
                 case JMP:
                     ass -> code[ass -> ip++] = JMP;
-                    sscanf(ass -> arr[j], ":%d", &i);
+                    sscanf(ass -> arr[j], "%*s :%d", &i);
                     ass -> code[ass -> ip++] = ass -> labels[i];
+                    SPU_PRINT("in JMP:\t");
+                    PRD(i);
                     break;
                 case LB:
                     sscanf(ass -> arr[j], ":%d", &i);
